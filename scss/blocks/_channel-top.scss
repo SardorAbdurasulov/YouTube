@@ -1,0 +1,152 @@
+.channel-top {
+  overflow-x: hidden;
+}
+
+.channel-top__head {
+  max-width: 1015px;
+  padding-right: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.channel-top__title {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 33px;
+  color: #19202C;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    background-image: url("../imgs/dolli.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+}
+
+.channel-top__list {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  @include reset-list;
+  margin-top: 30px;
+  // overflow-x: auto;
+}
+
+.channel-top__item {
+  position: relative;
+  z-index: 1;
+  min-width: 250px;
+  margin-right: 40px;
+}
+
+.channel-top__link {
+  position: relative;
+  z-index: 1;
+}
+
+.channel-top__img {
+  display: inline-block;
+  vertical-align: baseline;
+  width: 250px;
+  height: 150px;
+}
+
+.channel-top__item-title {
+  margin-top: 6px;
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #19202C;
+}
+
+.channel-top__item-bottom {
+  max-width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.channel-top__item-days-ago {
+  margin: 0;
+  font-size: 13px;
+  line-height: 16px;
+  color: #C2C2C2;
+}
+
+.channel-top__item-person {
+  margin: 0;
+  font-size: 13px;
+  line-height: 16px;
+  color: #C2C2C2;
+}
+
+.channel-top__item-clock {
+  position: absolute;
+  z-index: 5;
+  right: 15px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url("../imgs/clock.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.channel-top__item-time {
+  position: absolute;
+  z-index: 5;
+  right: 15px;
+  top: -20px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 0px 8px;
+}
+
+@include retina-bg {
+  .channel-top__title {
+    &::before {
+      background-image: url("../imgs/dolli@2x.png");
+    }
+  }
+}
+
+@include breakpoint-down (494) {
+
+}
+
+@include breakpoint-down (380) {
+  .channel-top__head {
+    display: none;
+  }
+  .channel-top__list {
+    max-width: 288px;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+  }
+  .channel-top__item {
+    min-width: 288px;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+  .channel-top__img {
+    width: 288px;
+  }
+  .channel-top__item-bottom {
+    max-width: 288px;
+  }
+}

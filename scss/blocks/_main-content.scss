@@ -1,0 +1,15 @@
+.main-content {
+  padding-top: 30px;
+}
+
+@include breakpoint-down (494) {
+  .main-content {
+    padding-top: 0;
+  }
+}
+@include breakpoint-down (380) {
+  .main-content {
+    height: 69vh;
+    overflow-y: auto;
+  }
+}

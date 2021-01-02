@@ -1,0 +1,41 @@
+.watch-later {
+  padding-bottom: 30px;
+  overflow-x: hidden;
+}
+
+.site-menu--none ~ .watch-later {
+  padding-left: 33px;
+}
+
+.watch-later__head {
+  max-width: 1020px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding-right: 33px;
+}
+
+.watch-later__title {
+  margin: 0;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 33px;
+  color: #19202C;
+}
+
+.watch-later__list {
+  display: flex;
+  @include reset-list;
+}
+
+@include breakpoint-down (380) {
+  .watch-later {
+    margin-top: 30px;
+    padding-bottom: 0;
+  }
+  .watch-later__list {
+    flex-direction: column;
+    align-items: center;
+  }
+}

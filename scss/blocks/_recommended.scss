@@ -1,0 +1,147 @@
+.recommended {
+  padding-top: 49px;
+  padding-bottom: 25px;
+  overflow-x: hidden;
+}
+
+.recommended__head {
+  max-width: 1020px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 33px;
+}
+
+.recommended__title {
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 33px;
+  color: #19202C;
+}
+
+.recommended__list {
+  display: flex;
+  @include reset-list;
+}
+
+.recommended__item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-shrink: 0;
+  max-width: 540px;
+  margin-right: 40px;
+}
+
+.recommended__link {
+  position: relative;
+  z-index: 1;
+}
+
+.recommended__link-clock {
+  position: absolute;
+  z-index: 5;
+  right: 20px;
+  top: 10px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  background-image: url("../imgs/clock.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.recommended__link-time {
+  position: absolute;
+  z-index: 5;
+  right: 10px;
+  bottom: 70px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 0px 8px;
+}
+
+.recommended__link-img {
+  display: inline-block;
+  vertical-align: baseline;
+  width: 540px;
+  height: 250px;
+}
+
+.recommended__link-title {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #19202C;
+}
+
+.recommended__link-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recommended__link-days-ago {
+  margin: 0;
+  font-size: 12px;
+  line-height: 15px;
+  color: #C2C2C2;
+}
+
+.recommended__link-person {
+  margin: 0;
+  font-size: 12px;
+  line-height: 15px;
+  color: #C2C2C2;
+}
+
+@include breakpoint-down (600) {
+  .recommended__item {
+    max-width: 350px;
+  }
+}
+@include breakpoint-down (494) {
+  .recommended__item {
+    max-width: 300px;
+    margin-bottom: 30px;
+  }
+  .recommended__link-img {
+    max-width: 300px;
+    height: 200px;
+  }
+   .recommended__link-clock {
+    bottom: 210px;
+  }
+}
+
+@include breakpoint-down (380) {
+  .recommended {
+    padding-top: 20px;
+  }
+  .recommended__head {
+    display: none;
+  }
+  .recommended__list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .recommended__item {
+    max-width: 288px;
+    margin-bottom: 30px;
+    margin-right: 0;
+  }
+  .recommended__link-img {
+    max-width: 288px;
+    height: 150px;
+  }
+  .recommended__link-clock {
+    bottom: 165px;
+  }
+}

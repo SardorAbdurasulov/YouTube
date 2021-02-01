@@ -479,6 +479,7 @@ img {
   height: 17px;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .site-header__button::before {
@@ -1586,6 +1587,87 @@ img {
   padding: 0;
   margin: 0;
   list-style-type: none;
+}
+
+.watch-later__item {
+  position: relative;
+  z-index: 1;
+  min-width: 250px;
+  margin-right: 40px;
+}
+
+.watch-later__link {
+  position: relative;
+  z-index: 1;
+}
+
+.watch-later__img {
+  display: inline-block;
+  vertical-align: baseline;
+  width: 250px;
+  height: 150px;
+}
+
+.watch-later__item-title {
+  margin-top: 6px;
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #19202C;
+}
+
+.watch-later__item-bottom {
+  max-width: 250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.watch-later__item-days-ago {
+  margin: 0;
+  font-size: 13px;
+  line-height: 16px;
+  color: #C2C2C2;
+}
+
+.watch-later__item-person {
+  margin: 0;
+  font-size: 13px;
+  line-height: 16px;
+  color: #C2C2C2;
+}
+
+.watch-later__item-clock {
+  position: absolute;
+  z-index: 5;
+  right: 15px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url("../imgs/clock.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.watch-later__item-time {
+  position: absolute;
+  z-index: 5;
+  right: 15px;
+  top: -20px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 0px 8px;
 }
 
 @media only screen and (max-width: 380px) {

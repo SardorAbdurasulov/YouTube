@@ -1,12 +1,12 @@
-var $_ = function (selector, node = document) {
+var $_ = (selector, node = document) => {
   return node.querySelector(selector);
 };
 
-var $$_ = function (selector, node = document) {
+var $$_ = (selector, node = document) => {
   return node.querySelectorAll(selector);
 };
 
-var createElement = function (element, elementClass, text) {
+var createElement = (element, elementClass, text) => {
   var newElement = document.createElement(element);
 
   if (elementClass) {
@@ -20,323 +20,299 @@ var createElement = function (element, elementClass, text) {
   return newElement;
 };
 
-var watchList = function() {
-  elWatchLater.innerHTML = ``;
-  var watchLaterFragment = document.createDocumentFragment();
-  watchLater.forEach(function (watch, watchIndex) {
-    var watchLaterItem = elRecommendedTemplate.cloneNode(true);
-
-    $_('.recommended__link-img', watchLaterItem).src = watch.recommendedImg;
-    $_('.recommended__link-img', watchLaterItem).srcset = watch.recommendedImg2x;
-    $_('.recommended__link-time', watchLaterItem).textContent = watch.recommendedTime;
-    $_('.recommended__link-title', watchLaterItem).textContent = watch.recommendedTitle;
-    $_('.recommended__link-days-ago', watchLaterItem).textContent = watch.recommendedDaysAgo;
-    $_('.recommended__link-person', watchLaterItem).textContent = watch.recommendedPerson;
-    $_('.recommended__link-clock', watchLaterItem).dataset.watchId = watchIndex;
-
-    watchLaterFragment.appendChild(watchLaterItem);
-  });
-  elWatchLater.appendChild(watchLaterFragment);
-};
-
-var watchList = function() {
-  elWatchLater.innerHTML = ``;
-  var watchLaterFragment = document.createDocumentFragment();
-  watchLater.forEach(function (topwatch, topwatchIndex) {
-    var ChannelTopItem = elChannelTopTemplate.cloneNode(true);
-
-    $_('.channel-top__img', ChannelTopItem).src = `${topwatch.ChannelTopImg}`;
-    $_('.channel-top__img', ChannelTopItem).srcset = `${topwatch.ChannelTopImg2x}`;
-    $_('.channel-top__item-title', ChannelTopItem).textContent = topwatch.ChannelTopTitle;
-    $_('.channel-top__item-days-ago',ChannelTopItem).textContent = topwatch.ChannelTopDaysAgo;
-    $_('.channel-top__item-person', ChannelTopItem).textContent = topwatch.ChannelTopPerson;
-    $_('.channel-top__item-time', ChannelTopItem).textContent = topwatch.ChannelTopTime;
-    $_('.channel-top__item-clock', ChannelTopItem).dataset.TopId = topwatchIndex;
-
-    watchLaterFragment.appendChild(ChannelTopItem);
-  });
-  elWatchLater.appendChild(watchLaterFragment);
-};
-
-var watchList = function() {
-  elWatchLater.innerHTML = ``;
-  var watchLaterFragment = document.createDocumentFragment();
-  watchLater.forEach(function (bottomwatch, bottomwatchIndex) {
-    var elChannelBottomItem = elChannelBottomTemplate.cloneNode(true);
-
-    $_('.channel-bottom__link-img', elChannelBottomItem).src = `${bottomwatch.ChannelBottomImg}`;
-    $_('.channel-bottom__link-img', elChannelBottomItem).srcset = `${bottomwatch.ChannelBottomImg2X}`;
-    $_('.channel-bottom__link-title', elChannelBottomItem).textContent = bottomwatch.ChannelBottomTitle;
-    $_('.channel-bottom__days-ago', elChannelBottomItem).textContent = bottomwatch.ChannelBottomDaysAgo;
-    $_('.channel-bottom__channel', elChannelBottomItem).textContent = bottomwatch.ChannelBottomPerson;
-    $_('.channel-bottom__link-time', elChannelBottomItem).textContent = bottomwatch.ChannelBottomTime;
-    $_('.channel-bottom__link-clock', elChannelBottomItem).dataset.BottomId = bottomwatchIndex;
-
-    watchLaterFragment.appendChild(elChannelBottomItem);
-  });
-  elWatchLater.appendChild(watchLaterFragment);
-};
-
-
-var watchLater = [];
-
-
-var elWatchLater = $_('.watch-later__list');
-var elChannelTopList = $_('.channel-top__list');
-var elRecommended = $_('.recommended__list');
-var elChannelBottomList = $_('.channel-bottom__list');
-
 //MENU-BUTTON
 var elMenuButton = document.querySelector(`.site-header__button`);
 var elMenu = document.querySelector(`.menu-section`);
 
-elMenuButton.addEventListener(`click`, function () {
+elMenuButton.addEventListener(`click`, () => {
   elMenu.classList.toggle(`site-menu--none`)
 });
 
-//CHANNEL-TOP
-
-var ChannelTop = [
-  {
-    ChannelTopImg: './imgs/video-img-1.png',
-    ChannelTopImg2x: 'imgs/video-img-1.png 1x, imgs/video-img-1@2x.png 2x',
-    ChannelTopTitle: 'A Brief History Of Creation',
-    ChannelTopDaysAgo: '80k views  ·  3 days ago',
-    ChannelTopPerson: 'Dollie Blair',
-    ChannelTopTime: '4:15',
-    ChannelTopId: 't1'
-  },
-  {
-    ChannelTopImg: './imgs/video-img-2.png',
-    ChannelTopImg2x: 'imgs/video-img-2.png 1x, imgs/video-img-2@2x.png 2x',
-    ChannelTopTitle: 'Selecting The Right Hotel',
-    ChannelTopDaysAgo: '123k views  ·  1 months ago',
-    ChannelTopPerson: 'Dollie Blair',
-    ChannelTopTime: '8:00',
-    ChannelTopId: 't2'
-  },
-  {
-    ChannelTopImg: './imgs/video-img-3.png',
-    ChannelTopImg2x: 'imgs/video-img-3.png 1x, imgs/video-img-3@2x.png 2x',
-    ChannelTopTitle: 'Asteroids',
-    ChannelTopDaysAgo: '43k views  ·  12 days ago',
-    person: 'Dollie Blair',
-    ChannelTopTime: '5:32',
-    ChannelTopId: 't3'
-  },
-  {
-    ChannelTopImg: './imgs/video-img-4.png',
-    ChannelTopImg2x: 'imgs/video-img-4.png 1x, imgs/video-img-4@2x.png 2x',
-    ChannelTopTitle: 'Telescopes 101',
-    ChannelTopDaysAgo: '11k views  ·  6 months ago',
-    ChannelTopPerson: 'Dollie Blair',
-    ChannelTopTime: '6:40',
-    ChannelTopId: 't4'
-  },
-  {
-    ChannelTopImg: './imgs/video-img-5.png',
-    ChannelTopImg2x: 'imgs/video-img-5.png 1x, imgs/video-img-5@2x.png 2x',
-    ChannelTopTitle: 'Medical Care Is Just',
-    ChannelTopDaysAgo: '18k views  ·  2 days ago',
-    ChannelTopPerson: 'Dollie Blair',
-    ChannelTopTime: '1:45',
-    ChannelTopId: 't5'
-  },
-  {
-    ChannelTopImg: './imgs/Cover.png',
-    ChannelTopImg2x: 'imgs/Cover.png 1x, imgs/Cover@2x.png 2x',
-    ChannelTopTitle: 'Moon Gazing',
-    ChannelTopDaysAgo: '67k views  ·  4 months ago',
-    ChannelTopPerson: 'Dollie Blair',
-    ChannelTopTime: '2:12',
-    ChannelTopId: 't6'
-  }
-]
-
+//DOM
+var elChannelTopList = $_('.channel-top__list');
+var elChannelTopItem = $_('.channel-top__item');
 var elChannelTopTemplate = $_('.channel-top__template').content;
-
 var elChannelTopFragment = document.createDocumentFragment();
-ChannelTop.forEach(function (ChannelTopObj, ChannelTopIndex){
-  var elChannelTopItem = elChannelTopTemplate.cloneNode(true);
 
-  $_('.channel-top__img', elChannelTopItem).src = `${ChannelTopObj.ChannelTopImg}`;
-  $_('.channel-top__img', elChannelTopItem).srcset = `${ChannelTopObj.ChannelTopImg2x}`;
-  $_('.channel-top__item-title', elChannelTopItem).textContent = ChannelTopObj.ChannelTopTitle;
-  $_('.channel-top__item-days-ago', elChannelTopItem).textContent = ChannelTopObj.ChannelTopDaysAgo;
-  $_('.channel-top__item-person', elChannelTopItem).textContent = ChannelTopObj.ChannelTopPerson;
-  $_('.channel-top__item-time', elChannelTopItem).textContent = ChannelTopObj.ChannelTopTime;
-  $_('.channel-top__item-time', elChannelTopItem).datetime = `${ChannelTopObj.ChannelTopTime}`;
-  $_('.channel-top__item-clock', elChannelTopItem).dataset.ChannelId = ChannelTopObj.ChannelTopId;
+var elRecommendedList = $_('.recommended__list');
+var elRecommendedTemplate = $_('.recommended__template').content;
+var elRecommendedFragment = document.createDocumentFragment();
 
-  elChannelTopFragment.appendChild(elChannelTopItem);
-});
-$_('.channel-top__list').appendChild(elChannelTopFragment);
+var elChannelBottomList = $_('.channel-bottom__list');
+var elChannelBottomTemplate = $_('.channel-bottom__template').content;
+var elChannelBottomFragment = document.createDocumentFragment();
 
+var elWatchLaterList = $_('.watch-later__list')
+var elWatchLaterTemplate = $_('.watch-later__template').content;
+var elWatchLaterFragment = document.createDocumentFragment();
 
-//RECOMMENDED
+//OBJ
+
+var watchLater = [];
+
+var channelTop = [
+  {
+    title: 'A Brief History Of Creation',
+    dayAgo: '80k views  ·  3 days ago',
+    person: 'Dollie Blair',
+    img: './imgs/video-img-1.png',
+    time: '4:15',
+    buttonId: 01
+  },
+  {
+    title: 'Selecting The Right Hotel',
+    dayAgo: '123k views  ·  1 months ago',
+    person: 'Dollie Blair',
+    img: './imgs/video-img-2.png',
+    time: '8:00',
+    buttonId: 02
+  },
+  {
+    title: 'Asteroids',
+    dayAgo: '43k views  ·  12 days ago',
+    person: 'Dollie Blair',
+    img: './imgs/video-img-3.png',
+    time: '5:32',
+    buttonId: 03
+  },
+  {
+    title: 'Telescopes 101',
+    dayAgo: '11k views  ·  6 months ago',
+    person: 'Dollie Blair',
+    img: './imgs/video-img-4.png',
+    time: '6:40',
+    buttonId: 04
+  },
+  {
+    title: 'Medical Care Is Just',
+    dayAgo: '18k views  ·  2 days ago',
+    person: 'Dollie Blair',
+    img: './imgs/video-img-5.png',
+    time: '1:45',
+    buttonId: 05
+  },
+  {
+    title: 'Moon Gazing',
+    dayAgo: '67k views  ·  4 months ago',
+    person: 'Dollie Blair',
+    img: './imgs/Cover.png',
+    time: '2:12',
+    buttonId: 06
+  }
+];
 
 var recommended = [
   {
-    recommendedImg: './imgs/recommend-img-1.png',
-    recommendedImg2x: 'imgs/recommend-img-1.png 1x, imgs/recommend-img-1@2x.png 2x',
-    recommendedTime: '3:40',
-    recommendedTitle: 'Dude You Re Getting A Telescope',
-    recommendedDaysAgo: '34k views  ·  5 months ago',
-    recommendedPerson: 'Gussie French',
-    recommendedID: 'r1'
+    title: 'Dude You Re Getting A Telescope',
+    dayAgo: '34k views  ·  5 months ago',
+    person: 'Gussie French',
+    img: './imgs/recommend-img-1.png',
+    time: '3:40',
+    buttonId: 51
   },
   {
-    recommendedImg: './imgs/recommend-img-2.png',
-    recommendedImg2x: 'imgs/recommend-img-2.png 1x, imgs/recommend-img-2@2x.png 2x',
-    recommendedTime: '2:12',
-    recommendedTitle: 'Moon Gazing',
-    recommendedDaysAgo: '54k views  ·  11 months ago',
-    recommendedPerson: 'Edward Osborne',
-    recommendedID: 'r2'
+    title: 'Moon Gazing',
+    dayAgo: '54k views  ·  11 months ago',
+    person: 'Edward Osborne',
+    img: './imgs/recommend-img-2.png',
+    time: '2:12',
+    buttonId: 52
   },
   {
-    recommendedImg: './imgs/recommend-img-3.png',
-    recommendedImg2x: 'imgs/recommend-img-3.png 1x, imgs/recommend-img-3@2x.png 2x',
-    recommendedTime: '2:12',
-    recommendedTitle: 'Moon Gazing',
-    recommendedDaysAgo: '125k views  ·  4 months ago',
-    recommendedPerson: 'Dollie Blair',
-    recommendedID: 'r3'
+    title: 'Moon Gazing',
+    dayAgo: '125k views  ·  4 months ago',
+    person: 'Dollie Blair',
+    img: './imgs/recommend-img-3.png',
+    time: '2:12',
+    buttonId: 53
   }
-]
+];
 
-var elRecommendedTemplate = $_('.recommended__template').content;
+var channelBottom = [
+  {
+    title: 'Astronomy Or Astrology',
+    dayAgo: '240k views  ·  4 months ago',
+    person: 'Food & Drink',
+    img: './imgs/ice-cream.png',
+    time: '7:36',
+    buttonId: 61
+  },
+  {
+    title: 'Advertising Outdoors',
+    dayAgo: '13k views  ·  15 days ago',
+    person: 'Food & Drink',
+    img: './imgs/cherry.png',
+    time: '2:19',
+    buttonId: 62
+  },
+  {
+    title: 'Radio Astronomy',
+    dayAgo: '1k views  ·  11 months ago',
+    person: 'Food & Drink',
+    img: './imgs/spaghetti.png',
+    time: '9:05',
+    buttonId: 63
+  },
+  {
+    title: 'A Good Autoresponder',
+    dayAgo: '45k views  ·  2 months ago',
+    person: 'Food & Drink',
+    img: './imgs/mandarin.png',
+    time: '3:40',
+    buttonId: 64
+  },
+  {
+    title: 'Baby Monitor Technology',
+    dayAgo: '86k views  ·  7 days ago',
+    person: 'Food & Drink',
+    img: './imgs/buns.png',
+    time: '1:56',
+    buttonId: 65
+  },
+  {
+    title: 'Asteroids',
+    dayAgo: '123k views  ·  4 months ago',
+    person: 'Dollie Blair',
+    img: './imgs/watermelon.png',
+    time: '4:15',
+    buttonId: 66
+  }
+];
 
-var elRecommendedFragment = document.createDocumentFragment();
-recommended.forEach(function (recommendedObj, recommendedId){
-  var elrecommendedItem = elRecommendedTemplate.cloneNode(true);
+//CHANNELLARNI forEach qilish
 
-  $_('.recommended__link-img', elrecommendedItem).src = `${recommendedObj.recommendedImg}`;
-  $_('.recommended__link-img', elrecommendedItem).srcset = `${recommendedObj.recommendedImg2x}`;
-  $_('.recommended__link-time', elrecommendedItem).textContent = recommendedObj.recommendedTime;
-  $_('.recommended__link-title', elrecommendedItem).textContent = recommendedObj.recommendedTitle;
-  $_('.recommended__link-days-ago', elrecommendedItem).textContent = recommendedObj.recommendedDaysAgo;
-  $_('.recommended__link-person', elrecommendedItem).textContent = recommendedObj.recommendedPerson;
-  $_('.recommended__link-clock', elrecommendedItem).dataset.test = recommendedObj.recommendedID;
+channelTop.forEach((channelTop) => {
+  var channelTopItem = elChannelTopTemplate.cloneNode(true);
 
-  elRecommendedFragment.appendChild(elrecommendedItem);
+  $_('.channel-top__item-title', channelTopItem).textContent = channelTop.title;
+  $_('.channel-top__item-days-ago', channelTopItem).textContent = channelTop.dayAgo;
+  $_('.channel-top__item-person', channelTopItem).textContent = channelTop.person;
+  $_('.channel-top__img', channelTopItem).src = channelTop.img;
+  $_('.channel-top__img', channelTopItem).alt = channelTop.title;
+  $_('.channel-top__item-time', channelTopItem).textContent = channelTop.time;
+  $_('.channel-top__item-clock', channelTopItem).dataset.Id = channelTop.buttonId;
+
+  elChannelTopFragment.appendChild(channelTopItem);
+});
+elChannelTopList.appendChild(elChannelTopFragment);
+
+
+recommended.forEach((recommended) => {
+  var recommendedItem = elRecommendedTemplate.cloneNode(true);
+
+  $_('.recommended__link-title', recommendedItem).textContent = recommended.title;
+  $_('.recommended__link-days-ago', recommendedItem).textContent = recommended.dayAgo;
+  $_('.recommended__link-person', recommendedItem).textContent = recommended.person;
+  $_('.recommended__link-img', recommendedItem).src = recommended.img;
+  $_('.recommended__link-img', recommendedItem).alt = recommended.title;
+  $_('.recommended__link-time', recommendedItem).textContent = recommended.time;
+  $_('.recommended__link-clock', recommendedItem).dataset.Id = recommended.buttonId;
+
+  elRecommendedFragment.appendChild(recommendedItem);
+});
+elRecommendedList.appendChild(elRecommendedFragment);
+
+
+channelBottom.forEach((channelBottom) => {
+  var channelBottomItem = elChannelBottomTemplate.cloneNode(true);
+
+  $_('.channel-bottom__link-title', channelBottomItem).textContent = channelBottom.title;
+  $_('.channel-bottom__days-ago', channelBottomItem).textContent = channelBottom.dayAgo;
+  $_('.channel-bottom__channel', channelBottomItem).textContent = channelBottom.person;
+  $_('.channel-bottom__link-img', channelBottomItem).src = channelBottom.img;
+  $_('.channel-bottom__link-img', channelBottomItem).alt = channelBottom.title;
+  $_('.channel-bottom__link-time', channelBottomItem).textContent = channelBottom.time;
+  $_('.channel-bottom__link-clock', channelBottomItem).dataset.Id = channelBottom.buttonId;
+
+  elChannelBottomFragment.appendChild(channelBottomItem);
+});
+elChannelBottomList.appendChild(elChannelBottomFragment);
+
+
+watchLaterList = obj => {
+  watchLater.forEach(later => {
+    var watchLaterItem = elWatchLaterTemplate.cloneNode(true);
+
+    $_('.watch-later__item-title', watchLaterItem).textContent = later.title;
+    $_('.watch-later__item-days-ago', watchLaterItem).textContent = later.dayAgo;
+    $_('.watch-later__item-person', watchLaterItem).textContent = later.person;
+    $_('.watch-later__img', watchLaterItem).src = later.img;
+    $_('.watch-later__img', watchLaterItem).alt = later.title;
+    $_('.watch-later__item-time', watchLaterItem).textContent = later.time;
+    $_('.watch-later__item-clock', watchLaterItem).dataset.watchLater = later.buttonId;
+
+    elWatchLaterFragment.appendChild(watchLaterItem);
+  });
+  elWatchLaterList.appendChild(elWatchLaterFragment);
+};
+
+elChannelTopList.addEventListener('click', (evt) => {
+  if (evt.target.matches('.channel-top__item-clock')) {
+    var TopWatchLater = channelTop.find((top) => {
+      return top.buttonId === Number(evt.target.dataset.Id)
+    });
+    var channelTopWatchLater = watchLater.findIndex(top => {
+      return top.buttonId === Number(evt.target.dataset.Id)
+    });
+    if (channelTopWatchLater === -1){
+      watchLater.push(TopWatchLater);
+      elWatchLaterList.innerHTML = '';
+      watchLaterList();
+    } else {
+      watchLater.splice(channelTopWatchLater, 1);
+      elWatchLaterList.innerHTML = '';
+      watchLaterList();
+    }
+  };
 });
 
-$_('.recommended__list').appendChild(elRecommendedFragment);
-
-
-//CHANNEL-BOTTOM
-
-var ChannelBottom = [
-  {
-    ChannelBottomImg: './imgs/ice-cream.png',
-    ChannelBottomImg2X: 'imgs/ice-cream.png 1x, imgs/ice-cream@2x.png 2x',
-    ChannelBottomTitle: 'Astronomy Or Astrology',
-    ChannelBottomDaysAgo: '240k views  ·  4 months ago',
-    ChannelBottomPerson: 'Food & Drink',
-    ChannelBottomTime: '7:36',
-    ChannelBottomId: 'b1'
-  },
-  {
-    ChannelBottomImg: './imgs/cherry.png',
-    ChannelBottomImg2X: 'imgs/cherry.png 1x, imgs/cherry@2x.png 2x',
-    ChannelBottomTitle: 'Advertising Outdoors',
-    ChannelBottomDaysAgo: '13k views  ·  15 days ago',
-    ChannelBottomPerson: 'Food & Drink',
-    ChannelBottomTime: '2:19',
-    ChannelBottomId: 'b2'
-  },
-  {
-    ChannelBottomImg: './imgs/spaghetti.png',
-    ChannelBottomImg2X: 'imgs/spaghetti.png 1x, imgs/spaghetti@2x.png 2x',
-    ChannelBottomTitle: 'Radio Astronomy',
-    ChannelBottomDaysAgo: '1k views  ·  11 months ago',
-    ChannelBottomPerson: 'Food & Drink',
-    ChannelBottomTime: '9:05',
-    ChannelBottomId: 'b3'
-  },
-  {
-    ChannelBottomImg: './imgs/mandarin.png',
-    ChannelBottomImg2X: 'imgs/mandarin.png 1x, imgs/mandarin@2x.png 2x',
-    ChannelBottomTitle: 'A Good Autoresponder',
-    ChannelBottomDaysAgo: '45k views  ·  2 months ago',
-    ChannelBottomPerson: 'Food & Drink',
-    ChannelBottomTime: '3:40',
-    ChannelBottomId: 'b4'
-  },
-  {
-    ChannelBottomImg: './imgs/buns.png',
-    ChannelBottomImg2X: 'imgs/buns.png 1x, imgs/buns@2x.png 2x',
-    ChannelBottomTitle: 'Baby Monitor Technology',
-    ChannelBottomDaysAgo: '86k views  ·  7 days ago',
-    ChannelBottomPerson: 'Food & Drink',
-    ChannelBottomTime: '1:56',
-    ChannelBottomId: 'b5'
-  },
-  {
-    ChannelBottomImg: './imgs/watermelon.png',
-    ChannelBottomImg2X: 'imgs/watermelon.png 1x, imgs/watermelon@2x.png 2x',
-    ChannelBottomTitle: 'Asteroids',
-    ChannelBottomDaysAgo: '123k views  ·  4 months ago',
-    ChannelBottomPerson: 'Dollie Blair',
-    ChannelBottomTime: '4:15',
-    ChannelBottomId: 'b6'
-  }
-]
-
-var elChannelBottomTemplate = $_('.channel-bottom__template').content;
-
-var elChannelBottomFragment = document.createDocumentFragment();
-ChannelBottom.forEach(function (ChannelBottomObj, ChannelBottomId) {
-  var ChannelBottomItem = elChannelBottomTemplate.cloneNode(true);
-
-  $_('.channel-bottom__link-img', ChannelBottomItem).src = `${ChannelBottomObj.ChannelBottomImg}`;
-  $_('.channel-bottom__link-img', ChannelBottomItem).srcset = `${ChannelBottomObj.ChannelBottomImg2X}`;
-  $_('.channel-bottom__link-title', ChannelBottomItem).textContent = ChannelBottomObj.ChannelBottomTitle;
-  $_('.channel-bottom__days-ago', ChannelBottomItem).textContent = ChannelBottomObj.ChannelBottomDaysAgo;
-  $_('.channel-bottom__channel', ChannelBottomItem).textContent = ChannelBottomObj.ChannelBottomPerson;
-  $_('.channel-bottom__link-time', ChannelBottomItem).textContent = ChannelBottomObj.ChannelBottomTime;
-  $_('.channel-bottom__link-clock', ChannelBottomItem).dataset.BottomID = ChannelBottomObj.ChannelBottomId;
-
-  elChannelTopFragment.appendChild(ChannelBottomItem);
-});
-$_('.channel-bottom__list').appendChild(elChannelTopFragment);
-
-
-watchList();
-
-elRecommended.addEventListener('click', function(evt) {
-  if(evt.target.matches(`.recommended__link-clock`)) {
-    var Id = evt.target.dataset.test;
-    recommended.forEach(function (intro, index) {
-      if (intro.recommendedID === Id) {
-        watchLater.push(intro)
-        watchList()
-      }
-    })
-  }
+elRecommendedList.addEventListener('click', evt => {
+  if (evt.target.matches('.recommended__link-clock')) {
+    var recommend = recommended.find(rec =>{
+      return rec.buttonId === Number(evt.target.dataset.Id);
+    });
+    var watchRecommended = watchLater.findIndex(rec =>{
+      return rec.buttonId === Number(evt.target.dataset.Id);
+    });
+    if (watchRecommended === -1) {
+      watchLater.push(recommend);
+      elWatchLaterList.innerHTML = '';
+      watchLaterList();
+    } else {
+      watchLater.splice(watchRecommended, 1);
+      elWatchLaterList.innerHTML = '';
+      watchLaterList();
+    }
+  };
 });
 
-elChannelTopList.addEventListener('click', function(evt) {
-  if(evt.target.matches(`.channel-top__item-clock`)) {
-    var Id = evt.target.dataset.ChannelId;
-    ChannelTop.forEach(function (intro, index) {
-      if (intro.ChannelTopId === Id) {
-        watchLater.push(intro)
-        watchList()
-      }
-    })
-  }
+elChannelBottomList.addEventListener('click', evt => {
+  if (evt.target.matches('.channel-bottom__link-clock')) {
+    var channelBottomList = channelBottom.find(bottom => {
+      return bottom.buttonId === Number(evt.target.dataset.Id);
+    });
+    var watchLaterBottom = watchLater.findIndex(bottom => {
+      return bottom.buttonId === Number(evt.target.dataset.Id);
+    });
+    if (watchLaterBottom === -1) {
+      watchLater.push(channelBottomList);
+      elWatchLaterList.innerHTML = '';
+      watchLaterList();
+    } else  {
+      watchLater.splice(watchLaterBottom, 1);
+      elWatchLaterList.innerHTML = '';
+      watchLaterList();
+    };
+  };
 });
 
-elChannelBottomList.addEventListener('click', function(evt) {
-  if(evt.target.matches(`.channel-bottom__link-clock`)) {
-    var Id = evt.target.dataset.BottomID;
-    ChannelBottom.forEach(function (intro, index) {
-      if (intro.ChannelBottomId === Id) {
-        watchLater.push(intro)
-        watchList()
-      }
-    })
-  }
+elWatchLaterList.addEventListener('click', evt => {
+  var watchLaterBottom = watchLater.findIndex(bottom => {
+      return bottom.buttonId === Number(evt.target.dataset.watchLater);
+    });
+  if (evt.target.matches('.watch-later__item-clock')) {
+    watchLater.splice(watchLaterBottom, 1);
+      elWatchLaterList.innerHTML = '';
+      watchLaterList();
+  };
 });
